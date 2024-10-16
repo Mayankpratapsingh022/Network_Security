@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: networksecurity
+Version: 0.0.1
+Author: Mayank Pratap Singh
+Author-email: mayankpratapsingh022@gmail.com
+License-File: LICENCE
+Requires-Dist: python-dotenv
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: pymongo
+Requires-Dist: certifi
