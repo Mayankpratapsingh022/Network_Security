@@ -51,8 +51,8 @@ class NetworkDataExtract():
 
             self.mongo_client =  pymongo.MongoClient(MONGO_DB_URL)
 
-            self.database = self.mongo_client[self.database_name]
-            self.collection = self.database[self.collection_name]
+            self.database = self.mongo_client[self.database]
+            self.collection = self.database[self.collection]
             self.collection.insert_many(self.records)
             return len(self.records)
 
@@ -70,6 +70,7 @@ if __name__ == '__main__':
 
     networkojb =  NetworkDataExtract()
     records = networkojb.csv_tojson_convertor(FILE_PATH)
-    networkojb.pushing_data_to_mongodb(records,DATABASE,COLLECTION)
-    print(records)
+    no_of_records = networkojb.pushing_data_to_mongodb(records,DATABASE,COLLECTION)
+
+    print(no_of_records)
 
