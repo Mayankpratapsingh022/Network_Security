@@ -3,5 +3,8 @@ pandas
 numpy 
 pymongo
 certifi
+pymongo[srv]
+
+
 
 -e .
