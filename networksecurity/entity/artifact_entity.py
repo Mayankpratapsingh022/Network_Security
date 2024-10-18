@@ -28,7 +28,7 @@ class ModelTrainerArtifact:
 
 
 @dataclass 
-class MOdleEvaluationArtifact:
+class ModelEvaluationArtifact:
     pass 
 
 
