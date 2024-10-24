@@ -14,7 +14,7 @@ class DataValidation:
         try:
             self.data_ingestion_aritfact = data_ingestion_artifact 
             self.data_validation_config = data_validation_config 
-            self.__schema_config = read_yaml_file(SCHEMA_FILE_PATH)
+            self._schema_config = read_yaml_file(SCHEMA_FILE_PATH)
         except Exception as e: 
             raise NetworkSecurityException(e,sys)
 
@@ -123,7 +123,7 @@ class DataValidation:
                 self.data_validation_config.valid_train_file_path, index = False,header=True 
             )
 
-            test_file_path.to_csv(
+            test_dataframe.to_csv(
                 self.data_validation_config.valid_test_file_path,index=False, header=True 
             )
 
