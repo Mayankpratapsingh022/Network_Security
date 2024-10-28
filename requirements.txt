@@ -9,4 +9,5 @@ scipy
 pyyaml
 dill
 mlflow
+xgboost
 -e .
