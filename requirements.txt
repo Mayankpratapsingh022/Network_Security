@@ -8,4 +8,5 @@ scikit-learn
 scipy
 pyyaml
 dill
+mlflow
 -e .
