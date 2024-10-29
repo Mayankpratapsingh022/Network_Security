@@ -57,49 +57,63 @@ class DataIngestion:
         except Exception as e:
             raise NetworkSecurityException(e,sys)
         
-        
-    def split_data_as_train_test(self,dataframe: pd.DataFrame):
+    def split_data_as_train_test(self, dataframe: pd.DataFrame):
         try:
-            train_set, test_set = train_test_split(
-                dataframe, test_size=self.data_ingestion_config.train_test_split_ratio
-            )
-            logging.info("Performed train test split on the dataframe")
+            # Check if the dataframe is empty
+            if dataframe.empty:
+                raise ValueError("The DataFrame is empty. Cannot perform train-test split.")
 
-            logging.info(
-                "Exited split_data_as_train_test method of Data_Ingestion class"
+            # Check if the number of rows is sufficient for splitting
+            if len(dataframe) < 2:
+                raise ValueError("The DataFrame does not have enough rows to perform a train-test split.")
+
+            # Set a default test size if none is provided
+            test_size = self.data_ingestion_config.train_test_split_ratio
+            if test_size is None or not (0 < test_size < 1):
+                test_size = 0.2
+            logging.info(f"Using test size: {test_size}")
+
+            # Perform the train-test split
+            train_set, test_set = train_test_split(
+                dataframe, test_size=test_size, random_state=42
             )
-            
+            logging.info("Performed train-test split on the dataframe")
+
+            # Save the train and test sets
             dir_path = os.path.dirname(self.data_ingestion_config.training_file_path)
-            
             os.makedirs(dir_path, exist_ok=True)
             
-            logging.info(f"Exporting train and test file path.")
+            train_set.to_csv(self.data_ingestion_config.training_file_path, index=False, header=True)
+            test_set.to_csv(self.data_ingestion_config.testing_file_path, index=False, header=True)
             
-            train_set.to_csv(
-                self.data_ingestion_config.training_file_path, index=False, header=True
-            )
-
-            test_set.to_csv(
-                self.data_ingestion_config.testing_file_path, index=False, header=True
-            )
-            logging.info(f"Exported train and test file path.")
-
+            logging.info(f"Exported train and test file paths: {self.data_ingestion_config.training_file_path}, {self.data_ingestion_config.testing_file_path}")
             
+        except ValueError as e:
+            raise NetworkSecurityException(f"Value error: {str(e)}", sys)
+        except OSError as e:
+            raise NetworkSecurityException(f"File system error: {str(e)}", sys)
         except Exception as e:
-            raise NetworkSecurityException(e,sys)
+            raise NetworkSecurityException(e, sys)
+
         
     def initiate_data_ingestion(self):
         try:
-            dataframe=self.export_collection_as_dataframe()
-            dataframe=self.export_data_into_feature_store(dataframe)
+            dataframe = self.export_collection_as_dataframe()
+            
+            # Check if the dataframe is empty before proceeding
+            if dataframe.empty:
+                raise ValueError("Data ingestion failed. The DataFrame is empty after fetching data from MongoDB. Please check the data source.")
+            
+            dataframe = self.export_data_into_feature_store(dataframe)
             self.split_data_as_train_test(dataframe=dataframe)
             
-            data_ingestion_artifact = DataIngestionArtifact(trained_file_path=self.data_ingestion_config.training_file_path,
-            test_file_path=self.data_ingestion_config.testing_file_path)
+            data_ingestion_artifact = DataIngestionArtifact(
+                trained_file_path=self.data_ingestion_config.training_file_path,
+                test_file_path=self.data_ingestion_config.testing_file_path
+            )
             return data_ingestion_artifact
-            
-            
+        except ValueError as e:
+            logging.error(f"Value error during data ingestion: {e}")
+            raise NetworkSecurityException(e, sys)
         except Exception as e:
-            raise NetworkSecurityException(e,sys)
-        
-        
+            raise NetworkSecurityException(e, sys)
