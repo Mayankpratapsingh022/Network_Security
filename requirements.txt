@@ -10,4 +10,6 @@ pyyaml
 dill
 mlflow
 xgboost
+fastapi
+uvicorn
 -e .
