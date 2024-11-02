@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/Machine%20learning%20Main/Mlops/3%20MLOPS/Network%20Security/mlruns/0/cb30749ff38740a39bdb3d8340f397bc/artifacts
+end_time: 1730538661222
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: cb30749ff38740a39bdb3d8340f397bc
+run_name: nosy-horse-297
+run_uuid: cb30749ff38740a39bdb3d8340f397bc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1730538655350
+status: 3
+tags: []
+user_id: mayan
