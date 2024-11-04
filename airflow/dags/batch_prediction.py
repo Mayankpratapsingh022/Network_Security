@@ -15,7 +15,7 @@
 #     # [END default_args]
 #     description='Network Security Prediction',
 #     schedule_interval="@weekly",
-#     start_date=pendulum.datetime(2024, 9, 1, tz="UTC"),
+#     start_date=pendulum.datetime( , 9, 1, tz="UTC"),
 #     catchup=False,
 #     tags=['example'],
 # ) as dag:

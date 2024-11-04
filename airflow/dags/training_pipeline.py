@@ -14,7 +14,7 @@ with DAG(
     # [END default_args]
     description='network security pipeline',
     schedule_interval="@weekly",
-    start_date=pendulum.datetime(2024,11,10, tz="UTC"),
+    start_date=pendulum.datetime(2024,11,5, tz="UTC"),
     catchup=False,
     tags=['example'],
 ) as dag:
