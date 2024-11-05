@@ -86,10 +86,13 @@ jobs:
       - name: Pull latest images
         run: |
          docker pull ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
-
+      
+      
       - name: Stop and remove network container if running
         run: |
-         docker ps -q --filter "name=networksecurity" | grep -q . && docker stop networksecurity && docker rm -fv networksecurity
+          docker ps -aq --filter "name=networksecurity" | xargs -r docker rm -fv
+
+
        
 
       - name: Run Docker Image to serve users
