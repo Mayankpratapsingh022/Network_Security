@@ -87,10 +87,6 @@ jobs:
         run: |
          docker pull ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
       
-      
-      - name: Stop and remove network container if running
-        run: |
-          docker ps -aq --filter "name=networksecurity" | xargs -r docker rm -fv
 
 
        
