@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/Machine%20learning%20Main/Mlops/3%20MLOPS/Network%20Security/mlruns/0/2a62f315397b4c9aa4975f115ae0128b/artifacts
+end_time: 1731687370391
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2a62f315397b4c9aa4975f115ae0128b
+run_name: upbeat-robin-504
+run_uuid: 2a62f315397b4c9aa4975f115ae0128b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731687342558
+status: 3
+tags: []
+user_id: mayan
