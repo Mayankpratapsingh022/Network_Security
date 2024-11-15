@@ -16,5 +16,5 @@ ipykernel
 apache-airflow 
 dvc
 python-multipart
-
+Jinja2
 -e .

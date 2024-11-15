@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/Machine%20learning%20Main/Mlops/3%20MLOPS/Network%20Security/mlruns/0/1dfcf2f98e8f4f42bfc19006f3d12395/artifacts
+end_time: 1731665363326
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1dfcf2f98e8f4f42bfc19006f3d12395
+run_name: rogue-sloth-235
+run_uuid: 1dfcf2f98e8f4f42bfc19006f3d12395
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731665357302
+status: 3
+tags: []
+user_id: mayan

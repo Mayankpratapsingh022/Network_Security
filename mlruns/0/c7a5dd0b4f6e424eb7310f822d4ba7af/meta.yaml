@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/Machine%20learning%20Main/Mlops/3%20MLOPS/Network%20Security/mlruns/0/c7a5dd0b4f6e424eb7310f822d4ba7af/artifacts
+end_time: 1731664381653
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c7a5dd0b4f6e424eb7310f822d4ba7af
+run_name: flawless-fowl-304
+run_uuid: c7a5dd0b4f6e424eb7310f822d4ba7af
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731664361789
+status: 3
+tags: []
+user_id: mayan

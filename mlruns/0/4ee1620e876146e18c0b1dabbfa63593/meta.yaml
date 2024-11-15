@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/Machine%20learning%20Main/Mlops/3%20MLOPS/Network%20Security/mlruns/0/4ee1620e876146e18c0b1dabbfa63593/artifacts
+end_time: 1731665589831
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4ee1620e876146e18c0b1dabbfa63593
+run_name: judicious-ape-462
+run_uuid: 4ee1620e876146e18c0b1dabbfa63593
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731665584179
+status: 3
+tags: []
+user_id: mayan

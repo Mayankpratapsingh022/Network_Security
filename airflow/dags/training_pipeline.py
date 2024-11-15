@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 with DAG(
-    'network_security',
+    'network_training',
     default_args={'retries': 2},
     # [END default_args]
     description='network security pipeline',
