@@ -117,11 +117,34 @@ This project is a comprehensive end-to-end MLOps pipeline to detect malicious UR
 
 ## Github Actions 
 
+### **CI/CD Pipeline Overview with GitHub Actions**
+
+The **CI/CD pipeline** is the backbone of this project, automating the processes of integration, delivery, and deployment to streamline the development lifecycle. Using **GitHub Actions**, to ensure that every code update triggers a set of automated workflows to test, build, and deploy the application efficiently and reliably.
+
 ![image](https://github.com/user-attachments/assets/9ad3f8c5-9b85-4d89-8bf3-3662bbca22f1)
-![image](https://github.com/user-attachments/assets/d778a287-794d-456f-a9b2-68ac3362ac20)
-![image](https://github.com/user-attachments/assets/8058ce67-127e-4de6-ac81-a6368da9198b)
+
+#### **Continuous Integration**
+- Ensures the codebase is always in a deployable state by running unit tests, linting, and other quality checks.
+- This step catches errors early in the development cycle, saving time and ensuring code quality.
+  
+  ![image](https://github.com/user-attachments/assets/d778a287-794d-456f-a9b2-68ac3362ac20)
 
 
+#### **Continuous Delivery**
+- Builds, tags, and pushes the Docker image to **Amazon Elastic Container Registry (ECR)** after successful integration.
+- Automates utility installations, AWS configurations, and ECR logins to make the image ready for deployment.
+  
+  ![image](https://github.com/user-attachments/assets/8058ce67-127e-4de6-ac81-a6368da9198b)
+
+
+#### **Continuous Deployment**
+- Deploys the latest Docker image to an **AWS EC2 instance** for production use.
+- Includes the following steps:
+  - **Pull Latest Images**: Fetches the most recent Docker image from **Amazon ECR**.
+  - **Run Docker Image**: Starts the Docker container with the latest image.
+  - **Clean Previous Containers**: Removes outdated images and containers to optimize storage and performance.
+
+  ![image](https://github.com/user-attachments/assets/6ff3eb07-0a97-4980-9112-d3c56c8d381e)
 
 
 
