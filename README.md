@@ -4,6 +4,31 @@
 This project is a comprehensive end-to-end MLOps pipeline to detect malicious URLs using **XGBoost**. It integrates various tools and techniques to ensure production-grade quality while showcasing best practices in MLOps.
 
 ---
+
+## **Key Tools & Technologies** 🛠️
+
+- **MongoDB**: Data source for storing and retrieving records.
+- **Airflow**: Orchestrates training and prediction pipelines.
+- **XGBoost**: Robust classifier for detecting malicious URLs.
+- **MLflow**: Tracks experiments and stores metrics like F1-score, Precision, and Recall.
+- **AWS S3**: Centralized storage for artifacts, logs, and models.
+- **AWS EC2 Instance**: Used as a **self-hosted runner** for GitHub Actions to handle pipeline deployments.  
+- **FastAPI**: Batch prediction service.
+- **Streamlit**: Simple UI for single URL predictions.
+- **GitHub Actions**: CI/CD pipeline automating Docker builds and deployments.
+
+---
+
+## **Highlights** 🌟
+
+- **End-to-End Pipeline**: Covers data ingestion, transformation, validation, model training, and evaluation.
+- **Version Control for Data**: Tracks schema and ensures drift detection.
+- **Metrics Tracking**: Monitors all experiments with **MLflow**.
+- **Deployment Ready**: Models are stored in **S3** and exposed via **FastAPI** and **Streamlit**.
+- **CI/CD**: Automated using **GitHub Actions** with Docker images pushed to **ECR** and deployed on **EC2**.
+
+
+
 ## **Project Workflow Overview** 🛠️
 ![image](https://github.com/user-attachments/assets/95214838-6af5-48d2-b7d7-9ee35a835848)
 
@@ -90,7 +115,36 @@ This project is a comprehensive end-to-end MLOps pipeline to detect malicious UR
 
         
 
+## Github Actions 
+
+![image](https://github.com/user-attachments/assets/9ad3f8c5-9b85-4d89-8bf3-3662bbca22f1)
+![image](https://github.com/user-attachments/assets/d778a287-794d-456f-a9b2-68ac3362ac20)
+![image](https://github.com/user-attachments/assets/8058ce67-127e-4de6-ac81-a6368da9198b)
+
+
+
+
+
 
 
 
 ---
+
+
+### **How to Run** 💻
+
+1. **Data Ingestion**:
+   - Start by fetching data from MongoDB using the `data_ingestion` module.
+
+2. **Pipeline Execution**:
+   - Use **Airflow DAGs** (`network_training_dag.py` and `network_prediction_dag.py`) for orchestrating training and prediction.
+
+3. **Batch Prediction**:
+   - Run the **FastAPI** server to upload a CSV file and receive predictions in JSON format.
+
+4. **Single Prediction**:
+   - Launch the **Streamlit** app for real-time prediction of a single URL.
+
+5. **Monitoring**:
+   - Track all experiments and metrics via the **MLflow UI**.
+
