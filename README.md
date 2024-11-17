@@ -5,6 +5,12 @@ This project is a comprehensive end-to-end MLOps pipeline to detect malicious UR
 
 ---
 
+![artitecture main](https://github.com/user-attachments/assets/3811845a-ab90-4257-a1f7-fb9da2f98015)
+
+
+
+
+
 ## **Key Tools & Technologies** 🛠️
 
 - **MongoDB**: Data source for storing and retrieving records.
