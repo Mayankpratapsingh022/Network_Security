@@ -1,7 +1,13 @@
 
-# Network Security - Malicious URL Detection 🚀
+# Network Security - Malicious URL Detection using MLOps
 
-This project is a comprehensive end-to-end MLOps pipeline to detect malicious URLs using **XGBoost**. It integrates various tools and techniques to ensure production-grade quality while showcasing best practices in MLOps.
+This repository presents a comprehensive end-to-end MLOps project designed to detect malicious URLs using XGBoost, ensuring user safety by identifying harmful links through machine learning. The project integrates a variety of tools and best practices to build a robust, scalable, and production-grade MLOps pipeline. By combining data ingestion, model training, deployment, and monitoring, it provides a complete solution for real-time and batch URL safety assessments.
+
+---
+
+## Introduction
+
+Malicious URLs are links that lead to harmful websites, often used by cybercriminals through phishing emails, social engineering, and other tactics. This project detects malicious URLs using machine learning and provides both single URL predictions and batch predictions through an interactive UI.
 
 ---
 
@@ -11,32 +17,87 @@ This project is a comprehensive end-to-end MLOps pipeline to detect malicious UR
 
 
 
-## **Key Tools & Technologies** 🛠️
+## **Tech Stack** 🛠️
 
-- **MongoDB**: Data source for storing and retrieving records.
-- **Airflow**: Orchestrates training and prediction pipelines.
-- **XGBoost**: Robust classifier for detecting malicious URLs.
-- **MLflow**: Tracks experiments and stores metrics like F1-score, Precision, and Recall.
-- **AWS S3**: Centralized storage for artifacts, logs, and models.
-- **AWS EC2 Instance**: Used as a **self-hosted runner** for GitHub Actions to handle pipeline deployments.  
-- **FastAPI**: Batch prediction service.
-- **Streamlit**: Simple UI for single URL predictions.
-- **GitHub Actions**: CI/CD pipeline automating Docker builds and deployments.
+| **Category**             | **Tools/Technologies**                                  | **Description**                                                |
+|--------------------------|---------------------------------------------------------|----------------------------------------------------------------|
+| **Frontend**             | Streamlit                                               | Provides a simple UI for real-time single URL predictions.     |
+| **Backend**              | FastAPI                                                 | Handles batch predictions and API endpoints.                   |
+| **Modeling**             | XGBoost, Python                                         | Machine learning model for detecting malicious URLs.           |
+| **Database**             | MongoDB                                                 | Stores data records for ingestion and model training.          |
+| **Orchestration**        | Apache Airflow                                          | Orchestrates training, retraining, and batch prediction pipelines. |
+| **Experiment Tracking**  | MLflow                                                  | Tracks model metrics like F1-score, Precision, and Recall.     |
+| **CI/CD**                | GitHub Actions                                          | Automates CI/CD pipelines, including Docker build and deployment. |
+| **Containerization**     | Docker, AWS ECR                                         | Docker images stored securely in **ECR** for consistent deployment. |
+| **Cloud Storage**        | AWS S3                                                  | Stores artifacts, trained models, and logs.                    |
+| **Cloud Hosting**        | AWS EC2 Instance                                        | Serves as a **self-hosted runner** for GitHub Actions, enabling deployment. |
 
 ---
 
+
 ## **Highlights** 🌟
 
-- **End-to-End Pipeline**: Covers data ingestion, transformation, validation, model training, and evaluation.
-- **Version Control for Data**: Tracks schema and ensures drift detection.
-- **Metrics Tracking**: Monitors all experiments with **MLflow**.
-- **Deployment Ready**: Models are stored in **S3** and exposed via **FastAPI** and **Streamlit**.
-- **CI/CD**: Automated using **GitHub Actions** with Docker images pushed to **ECR** and deployed on **EC2**.
+- **Real-time Single URL Predictions**: Users can interact with the model via a **Streamlit** app to get instant safety assessments.
+- **Batch Predictions for Large Datasets**: Handle multiple URLs at once through **FastAPI** for efficient bulk predictions.
+- **End-to-End MLOps Pipeline**: Covers data ingestion, transformation, validation, model training, and evaluation, ensuring a robust workflow.
+- **Model Retraining Pipeline**: Retrain models manually or through **Apache Airflow**, ensuring the model stays up-to-date with new data.
+- **Metrics Tracking with MLflow**: All experiments are tracked with **MLflow** for easy comparison and monitoring.
+- **Artifact & Model Storage**: Models and intermediate artifacts are stored securely in **AWS S3**, with deployment readiness at every step.
+- **Deployment-Ready Model**: Models are exposed via **FastAPI** and **Streamlit** for end-user interaction.
+- **Version Control for Data**: Tracks data schema and detects any drift to maintain high data quality.
+- **CI/CD Pipeline**: Fully automated using **GitHub Actions**, with Docker images pushed to **Amazon ECR** and deployed to **AWS EC2**.
+
+---
 
 
+## Dataset and Features
 
-## **Project Workflow Overview** 🛠️
-![image](https://github.com/user-attachments/assets/95214838-6af5-48d2-b7d7-9ee35a835848)
+The dataset contains **30 features** extracted from URLs, which help classify them as **Malicious** or **Safe**.
+
+### Key Features
+
+| **Feature Name**           | **Description**                                                                                   |
+|----------------------------|---------------------------------------------------------------------------------------------------|
+| `having_IP_Address`        | Checks if the URL contains an IP address instead of a domain name, which can be a sign of phishing.|
+| `URL_Length`               | Measures the length of the URL; longer URLs are often used to hide malicious content.            |
+| `Shortening_Service`       | Detects the use of URL shortening services like `bit.ly`, often used to disguise harmful links.  |
+| `having_At_Symbol`         | Flags the presence of '@' in the URL, which is sometimes used to obscure the real destination.   |
+| `double_slash_redirecting` | Identifies if there are multiple slashes after the protocol, which can indicate redirection.     |
+<details>
+   
+  <summary>Click here to expand and view all features</summary>
+  
+
+| **Feature Name**           | **Description**                                                                                   |
+|----------------------------|---------------------------------------------------------------------------------------------------|
+| `Prefix_Suffix`            | Checks for the use of dashes ('-') in the domain, commonly used in phishing URLs to spoof legit domains. |
+| `having_Sub_Domain`        | Counts the number of subdomains; excessive subdomains are often used to make a URL appear legitimate. |
+| `SSLfinal_State`           | Analyzes the SSL certificate; no SSL or a self-signed certificate may indicate an unsafe URL.    |
+| `Domain_registration_length` | Measures the duration of domain registration; shorter registration lengths are common for malicious sites. |
+| `Favicon`                  | Checks the favicon’s source; a mismatch between favicon and domain may indicate phishing.        |
+| `port`                     | Detects if any unusual ports are being used, which can indicate malicious activity.             |
+| `HTTPS_token`              | Flags the use of 'HTTPS' as part of the domain name, which could be a misleading tactic.         |
+| `Request_URL`              | Checks if resources (e.g., images, scripts) are loaded from different domains, which may be suspicious. |
+| `URL_of_Anchor`            | Analyzes the percentage of anchors (`<a>` tags) pointing to a different domain.                  |
+| `Links_in_tags`            | Measures links found inside certain HTML tags like `<meta>`, `<script>`, and `<link>`.           |
+| `SFH` (Server Form Handler) | Checks if the form action points to suspicious locations, which could indicate data theft.      |
+| `Submitting_to_email`      | Flags URLs that allow form data to be directly submitted to an email, a sign of a phishing attempt.|
+| `Abnormal_URL`             | Identifies URLs that do not match their domain, suggesting a discrepancy between URL and content.|
+| `Redirect`                 | Counts the number of redirections (`3xx` responses); excessive redirects may indicate phishing.  |
+| `on_mouseover`             | Detects if JavaScript `onmouseover` events are being used to change the link destination, tricking users.|
+| `RightClick`               | Identifies if right-clicking is disabled, which may indicate attempts to prevent users from inspecting elements.|
+| `popUpWindow`              | Flags the presence of pop-up windows, often used for deceptive ads or malicious content.        |
+| `Iframe`                   | Detects the presence of invisible iframes, which are often used to load malicious content silently.|
+| `age_of_domain`            | Analyzes the domain age; new domains are often used for malicious activities.                   |
+| `DNSRecord`                | Checks if the domain has missing DNS records, indicating an untrustworthy website.              |
+| `web_traffic`              | Measures the website's traffic volume; low or no traffic may indicate a potentially dangerous URL. |
+| `Page_Rank`                | Checks the page rank of the URL; low rank could mean it is not a well-known or trusted source.  |
+| `Google_Index`             | Identifies if the URL is indexed by Google; non-indexed URLs might be suspicious.                |
+| `Links_pointing_to_page`   | Counts links pointing to the webpage; few or no inbound links may indicate a new or untrustworthy website.|
+| `Statistical_report`       | Flags URLs reported for suspicious activity or listed in blacklists.                             |
+
+</details>
+
 
 
 
