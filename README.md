@@ -98,9 +98,33 @@ The dataset contains **30 features** extracted from URLs, which help classify th
 
 </details>
 
+### Frontend
 
+- **Tool:** Streamlit
+- Provides an intuitive interface for users to:
+  - Predict single URLs.
+  - Visualize results.
 
+![image](https://github.com/user-attachments/assets/5ad92508-b587-4e93-b581-d83a8cc397ae)
 
+![image](https://github.com/user-attachments/assets/9aa17086-4295-4624-b2ad-249de47a1b44)
+
+### Backend
+
+- **Tool:** FastAPI
+- Features:
+  - **Training Route:** Trigger model training using FastAPI or Airflow.
+  - **Batch Prediction Route:** Upload CSVs and receive predictions.
+![image](https://github.com/user-attachments/assets/07b06b78-b089-40af-9499-b71c0cb196d7)
+![image](https://github.com/user-attachments/assets/c86a5761-d256-4ab8-b0ef-4a043a7f7ef7)
+![image](https://github.com/user-attachments/assets/3b0477f5-0446-4937-b125-8944412108af)
+![image](https://github.com/user-attachments/assets/0206a8e1-bd2e-4bbb-b25b-365e66523dee)
+![image](https://github.com/user-attachments/assets/7d38fd4c-2abc-4a25-9440-a95349cae6df)
+![image](https://github.com/user-attachments/assets/2c99ca95-36b3-47d4-88ee-52f9afda209f)
+![image](https://github.com/user-attachments/assets/e2761b24-a659-4e95-91c8-ec7efa72d26b)
+![image](https://github.com/user-attachments/assets/e5faa95e-d0a3-43b5-9b17-43f892a7912e)
+
+ 
 1. **Data Ingestion**:
    - Fetched data directly from **MongoDB**.
     ![image](https://github.com/user-attachments/assets/ff806462-7b17-48a3-bad1-cd6f2186a72c)
