@@ -11,7 +11,10 @@ Malicious URLs are links that lead to harmful websites, often used by cybercrimi
 
 ---
 
-![artitecture main](https://github.com/user-attachments/assets/3811845a-ab90-4257-a1f7-fb9da2f98015)
+![Architecture](https://github.com/user-attachments/assets/2f1b37a7-d64e-40f4-9750-42ec43dcc972)
+
+
+
 
 
 
