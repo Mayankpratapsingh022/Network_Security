@@ -193,7 +193,7 @@ The dataset contains **30 features** extracted from URLs, which help classify th
    - Compared the new model with the existing deployed model (if available).
    - Evaluated metrics such as **Precision**, **Recall**, and **F1-score** using **MLflow** for tracking.
      ![image](https://github.com/user-attachments/assets/33bd60a6-41c5-4d28-9bb2-d3006db91070)
-     ![image](https://github.com/user-attachments/assets/09a004b7-5452-4349-81f8-fe54b54208d2)
+     
      - While the model shows signs of overfitting, the primary objective of this project is to demonstrate the implementation of a robust CI/CD pipeline.
       Model optimization can be addressed as a future enhancement.
      ![image](https://github.com/user-attachments/assets/48722274-17b6-40b3-8ce9-1923b0523718)
