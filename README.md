@@ -212,7 +212,12 @@ The dataset contains **30 features** extracted from URLs, which help classify th
 
 The **CI/CD pipeline** is the backbone of this project, automating the processes of integration, delivery, and deployment to streamline the development lifecycle. Using **GitHub Actions**, to ensure that every code update triggers a set of automated workflows to test, build, and deploy the application efficiently and reliably.
 
-![image](https://github.com/user-attachments/assets/9ad3f8c5-9b85-4d89-8bf3-3662bbca22f1)
+- Using AWS EC2 instance as a Self-Hosted Runner for Github Actions
+ - ![image](https://github.com/user-attachments/assets/eda98175-f802-44be-b651-a41c93ad9003)
+ - ![image](https://github.com/user-attachments/assets/c95d5408-0f9e-43ac-97a9-0c020e340582)
+
+
+
 
 #### **Continuous Integration**
 - Ensures the codebase is always in a deployable state by running unit tests, linting, and other quality checks.
@@ -238,8 +243,46 @@ The **CI/CD pipeline** is the backbone of this project, automating the processes
   ![image](https://github.com/user-attachments/assets/6ff3eb07-0a97-4980-9112-d3c56c8d381e)
 
 
+### CI/CD has been completed
+![image](https://github.com/user-attachments/assets/9ad3f8c5-9b85-4d89-8bf3-3662bbca22f1)
 
 
+---
+
+
+### Docker
+
+- **Image Creation:** Docker images stored in **AWS ECR**.
+- **Deployment:** Images pulled and run on an **AWS EC2** instance.
+![image](https://github.com/user-attachments/assets/50e4b4ac-0487-45df-91a7-d192b0b146ed)
+
+---
+
+
+### Airflow Integration
+
+
+
+
+- **UI:** Airflow dashboard accessible via public URL for manual pipeline triggers.
+- Login into Airflow username - Admin password - admin
+  - ![image](https://github.com/user-attachments/assets/7c8acf28-c723-4ea0-b92d-767357d3c0cf)
+  - ![image](https://github.com/user-attachments/assets/0d646c31-62e6-4597-b6c8-96652f94fc53)
+- **DAGs:**
+  - **network_prediction:** Automates batch predictions.
+    - ![image](https://github.com/user-attachments/assets/94e497fe-9ffa-4c12-9dd8-ae57f833ffd3)
+
+  - **network_training:** Retrains the model weekly.
+     - ![image](https://github.com/user-attachments/assets/974bfab6-2ff8-4efb-b3aa-8aa648451756)
+
+ - Here are the two DAGs in Airflow UI
+    - ![image](https://github.com/user-attachments/assets/bb81b358-1f99-489e-83c6-b048eb0b4ebb)
+  
+- Running one of the DAG  `network_training` 
+   - ![image](https://github.com/user-attachments/assets/9d377e8d-dd74-476d-ac2e-1f7fbfca2443)
+
+
+    
 
 
 ---
