@@ -106,10 +106,12 @@ The dataset contains **30 features** extracted from URLs, which help classify th
 - Provides an intuitive interface for users to:
   - Predict single URLs.
   - Visualize results.
+1. **First Screenshot**: The Streamlit app predicts that the entered URL (`https://www.google.com/`) is safe.
+   - ![image](https://github.com/user-attachments/assets/5ad92508-b587-4e93-b581-d83a8cc397ae)
 
-![image](https://github.com/user-attachments/assets/5ad92508-b587-4e93-b581-d83a8cc397ae)
 
-![image](https://github.com/user-attachments/assets/9aa17086-4295-4624-b2ad-249de47a1b44)
+2. **Second Screenshot**: The Streamlit app predicts that the entered URL (`http://www.example-malware-download.com/...`) is malicious.
+   - ![image](https://github.com/user-attachments/assets/9aa17086-4295-4624-b2ad-249de47a1b44)
 
 ### Backend
 
@@ -117,14 +119,23 @@ The dataset contains **30 features** extracted from URLs, which help classify th
 - Features:
   - **Training Route:** Trigger model training using FastAPI or Airflow.
   - **Batch Prediction Route:** Upload CSVs and receive predictions.
-![image](https://github.com/user-attachments/assets/07b06b78-b089-40af-9499-b71c0cb196d7)
-![image](https://github.com/user-attachments/assets/c86a5761-d256-4ab8-b0ef-4a043a7f7ef7)
-![image](https://github.com/user-attachments/assets/3b0477f5-0446-4937-b125-8944412108af)
-![image](https://github.com/user-attachments/assets/0206a8e1-bd2e-4bbb-b25b-365e66523dee)
-![image](https://github.com/user-attachments/assets/7d38fd4c-2abc-4a25-9440-a95349cae6df)
-![image](https://github.com/user-attachments/assets/2c99ca95-36b3-47d4-88ee-52f9afda209f)
-![image](https://github.com/user-attachments/assets/e2761b24-a659-4e95-91c8-ec7efa72d26b)
-![image](https://github.com/user-attachments/assets/e5faa95e-d0a3-43b5-9b17-43f892a7912e)
+1. **First Screenshot**: Displays the FastAPI Swagger documentation showing available routes (`/train` and `/predict`) for model operations.
+   ![image](https://github.com/user-attachments/assets/07b06b78-b089-40af-9499-b71c0cb196d7)
+
+2. **Second Screenshot**: Shows the detailed `GET /train` route in FastAPI for triggering the model training process.
+   ![image](https://github.com/user-attachments/assets/c86a5761-d256-4ab8-b0ef-4a043a7f7ef7)
+3. **Third Screenshot**: Shows the successful execution of the `GET /train` route, including model artifacts being pushed to an S3 bucket.
+   ![image](https://github.com/user-attachments/assets/3b0477f5-0446-4937-b125-8944412108af)
+4. **Fourth Screenshot**: Displays the AWS S3 bucket named "networksecuritymlops" where the artifacts (`data_ingestion`, `data_transformation`, etc.) are stored.  
+   ![image](https://github.com/user-attachments/assets/0206a8e1-bd2e-4bbb-b25b-365e66523dee)
+5. **Fifth Screenshot**: Shows the S3 bucket containing the folder for saved models, where the model (`model.pkl`) is stored.
+   ![image](https://github.com/user-attachments/assets/7d38fd4c-2abc-4a25-9440-a95349cae6df)
+6. **Sixth Screenshot**: Displays the `POST /predict` route in FastAPI where users can upload a CSV file for batch prediction.
+   ![image](https://github.com/user-attachments/assets/2c99ca95-36b3-47d4-88ee-52f9afda209f)
+7. **Seventh Screenshot**: Shows the request section for the `POST /predict` route, where a CSV file is uploaded.
+   ![image](https://github.com/user-attachments/assets/e2761b24-a659-4e95-91c8-ec7efa72d26b)
+8. **Eighth Screenshot**: Displays the successful response with predictions generated for each URL in the uploaded CSV file.
+   ![image](https://github.com/user-attachments/assets/e5faa95e-d0a3-43b5-9b17-43f892a7912e)
 
  
 1. **Data Ingestion**:
@@ -289,21 +300,65 @@ The **CI/CD pipeline** is the backbone of this project, automating the processes
 
 ---
 
+## **How to Run the Project** 🚀
 
-### **How to Run** 💻
+This section provides a step-by-step guide on how to set up and run the Malicious URL Detection project both locally and in a deployed environment.
 
-1. **Data Ingestion**:
-   - Start by fetching data from MongoDB using the `data_ingestion` module.
+### **Installation**
 
-2. **Pipeline Execution**:
-   - Use **Airflow DAGs** (`network_training_dag.py` and `network_prediction_dag.py`) for orchestrating training and prediction.
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/yourusername/malicious-url-detection.git
+   cd malicious-url-detection
+   ```
+2. **Install Dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-3. **Batch Prediction**:
-   - Run the **FastAPI** server to upload a CSV file and receive predictions in JSON format.
+### **Local Setup**
 
-4. **Single Prediction**:
+1. **Start the Streamlit App:**
+   - Launch the user interface for **single URL prediction**.
+   ```bash
+   streamlit run app.py
+   ```
+2. **Run the FastAPI Backend:**
+   - Start the API for handling **batch predictions**.
+   ```bash
+   uvicorn main:app --reload
+   ```
+
+### **Deployment**
+
+1. **Build and Push Docker Image:**
+   - Build the Docker image and push it to **AWS ECR**.
+   ```bash
+   docker build -t your-docker-image .
+   docker tag your-docker-image:latest <AWS_ECR_URI>
+   docker push <AWS_ECR_URI>
+   ```
+2. **Run Docker Container on EC2 Instance:**
+   - Start the **AWS EC2** instance and run the container.
+   ```bash
+   docker run -d -p 80:80 your-docker-image
+   ```
+
+### **Running the Project Components**
+
+1. **Data Ingestion:**
+   - Start by fetching data from **MongoDB** using the `data_ingestion` module.
+
+2. **Pipeline Execution:**
+   - Use **Airflow DAGs** (`network_training_dag.py` and `network_prediction_dag.py`) to orchestrate data ingestion, training, and prediction.
+
+3. **Batch Prediction:**
+   - Run the **FastAPI** server and use the `/predict` route to upload a CSV file and receive predictions in **JSON** format.
+
+4. **Single Prediction:**
    - Launch the **Streamlit** app for real-time prediction of a single URL.
 
-5. **Monitoring**:
-   - Track all experiments and metrics via the **MLflow UI**.
+5. **Monitoring:**
+   - Track all experiments, model metrics (e.g., F1-score, Precision), and logs via the **MLflow UI**.
 
+---
