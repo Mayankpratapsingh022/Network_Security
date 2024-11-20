@@ -52,6 +52,8 @@ Malicious URLs are links that lead to harmful websites, often used by cybercrimi
 
 ## Dataset and Features
 
+![url features](https://github.com/user-attachments/assets/b31f05db-528b-452c-a97e-0aa64319dcce)
+
 The dataset contains **30 features** extracted from URLs, which help classify them as **Malicious** or **Safe**.
 
 ### Key Features
