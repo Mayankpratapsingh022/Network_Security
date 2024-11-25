@@ -1,6 +1,10 @@
 
 # Network Security - Malicious URL Detection using MLOps
 
+
+[Video Explaination of the project](https://youtu.be/stdsfTTr4xk)
+
+
 This repository presents a comprehensive end-to-end MLOps project designed to detect malicious URLs using XGBoost, ensuring user safety by identifying harmful links through machine learning. The project integrates a variety of tools and best practices to build a robust, scalable, and production-grade MLOps pipeline. By combining data ingestion, model training, deployment, and monitoring, it provides a complete solution for real-time and batch URL safety assessments.
 
 ---
